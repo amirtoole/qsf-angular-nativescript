@@ -1,6 +1,6 @@
 # NativeScript + AngularJS
 
-This is a template project using NativeScript and AngularJS 2
+
 
 # Prerequisites
 

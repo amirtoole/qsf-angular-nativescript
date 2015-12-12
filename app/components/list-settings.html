@@ -1,0 +1,11 @@
+<GridLayout rows="auto" columns="*">
+    <Button style="margin: 10px" horizontalAlignment="left"
+        (tap)="settings.isListLayout=!settings.isListLayout" 
+        [text]="settings.isListLayout ? 'WRAP' : 'LIST'"> 
+    </Button>
+    
+    <Button style="margin:10;" horizontalAlignment="right"
+        (tap)="settings.showOnlyNew=!settings.showOnlyNew"
+        [text]="settings.showOnlyNew ? 'SHOW ALL' : 'SHOW ONLY NEW'">
+    </Button>
+</GridLayout>    

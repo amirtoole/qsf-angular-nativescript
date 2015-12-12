@@ -2,18 +2,23 @@ import 'reflect-metadata';
 import {TextView} from 'ui/text-view';
 import {topmost} from 'ui/frame';
 import {nativeScriptBootstrap} from 'nativescript-angular/application';
-import {Component} from 'angular2/angular2';
+import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
+
+import {groups, featuredExamples, Example, ExampleGroup} from "./model/examples-model";
+import {ExamplesListComponenet} from "./examples-list/examples-list";
+// import {GroupsListComponenet} from "./groups-list/groups-list";
+import {ListSettingsComponent} from './components/list-settings';
+import {ListSettingsService} from "./components/list-settings-service";
 
 
 @Component({
     selector: 'main',
-    template: `
-<StackLayout>
-    <Label text="The demo goes here" />    
-</StackLayout>
-`,
+    providers: [ListSettingsService],
+    directives: [CORE_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet],
+    templateUrl: "main-page.html"
 })
 class MainPage {
+    public featuredExamples = featuredExamples;
 }
 
 export function pageLoaded(args) {

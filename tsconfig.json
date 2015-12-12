@@ -1,23 +1,27 @@
 {
-    "compilerOptions": {
-        "outDir": "app",
-        "rootDir": "app",
-        "module": "commonjs",
-        "target": "es5",
-        "inlineSourceMap": true,
-        "experimentalDecorators": true,
-        "removeComments": false,
-        "emitDecoratorMetadata": true,
-        "noEmitOnError": true
-    },
-    "files": [
-        "app/app.ts",
-        "app/compat.d.ts",
-        "app/main-page.ts",
-        "node_modules/tns-core-modules/tns-core-modules.d.ts"
-    ],
-    "filesGlob": [
-        "node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "app/**/*.ts"
-    ]
+  "compilerOptions": {
+    "outDir": "app",
+    "rootDir": "app",
+    "module": "commonjs",
+    "target": "es5",
+    "inlineSourceMap": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": true
+  },
+  "filesGlob": [
+    "node_modules/tns-core-modules/tns-core-modules.d.ts",
+    "app/**/*.ts"
+  ],
+  "files": [
+    "app/app.ts",
+    "app/compat.d.ts",
+    "app/components/list-settings-service.ts",
+    "app/components/list-settings.ts",
+    "app/examples-list/examples-list.ts",
+    "app/main-page.ts",
+    "app/model/examples-model.ts",
+    "node_modules/tns-core-modules/tns-core-modules.d.ts"
+  ]
 }

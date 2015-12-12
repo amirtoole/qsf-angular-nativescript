@@ -1,0 +1,34 @@
+<GridLayout rows="auto, *">
+  <list-settings></list-settings>
+
+  <ScrollView row="1">
+    <WrapLayout>
+      <StackLayout *ng-for="#example of filteredExamples" 
+        [width]="isListLayout ? 360 : 180"
+        [orientation]="isListLayout ? 'horizontal' : 'vertical'"
+        tap="navigateToExample" class="example-item"
+       >
+        
+        <GridLayout columns="*" rows="*"
+          [class.example-img-wrap]="!isListLayout" 
+          [class.example-img-list]="isListLayout">
+          
+          <Image [src]="example.image" stretch="aspectFit" 
+            [class.list-example-image-new]="example.isNew" 
+            [class.list-example-image]="!example.isNew"></Image>
+          <Image src="res://ic_new" class="new" stretch="none" [visibility]="example.isNew ? 'visible' : 'collapsed'"></Image>
+        </GridLayout>
+
+        <StackLayout>
+          <Label [text]="example.title"           
+            [class.example-title-wrap]="!isListLayout" 
+            [class.example-title-list]="isListLayout"></Label>
+          <Label [text]="example.controls"           
+            [class.used-controls-wrap]="!isListLayout" 
+            [class.used-controls-list]="isListLayout"></Label>
+        </StackLayout>
+      </StackLayout>
+
+    </WrapLayout>
+  </ScrollView>
+</GridLayout>
