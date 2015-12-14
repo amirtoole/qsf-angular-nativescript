@@ -2,6 +2,7 @@ import {Component, CORE_DIRECTIVES, Input} from 'angular2/angular2';
 import {Example} from "../model/examples-model";
 import {ListSettingsService} from "../components/list-settings-service";
 import {ListSettingsComponent} from "../components/list-settings";
+import {ScreenSizeService} from "../components/screen-size-service";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
@@ -12,11 +13,9 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 export class ExamplesListComponenet {
     @Input() examples: Array<Example>;
 
-    private settings: ListSettingsService;
 
-    constructor(settings: ListSettingsService) {
+    constructor(public settings: ListSettingsService, public screen: ScreenSizeService) {
         console.log("------------- ExamplesListComponenet constructor");
-        this.settings = settings;
     }
 
     public get isListLayout(): boolean {

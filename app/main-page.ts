@@ -9,33 +9,34 @@ import {ExamplesListComponenet} from "./examples-list/examples-list";
 // import {GroupsListComponenet} from "./groups-list/groups-list";
 import {ListSettingsComponent} from './components/list-settings';
 import {ListSettingsService} from "./components/list-settings-service";
+import {ScreenSizeService} from "./components/screen-size-service";
 
 
 @Component({
-    selector: 'main',
-    providers: [ListSettingsService],
-    directives: [CORE_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet],
-    templateUrl: "main-page.html"
+  selector: 'main',
+  providers: [ListSettingsService, ScreenSizeService],
+  directives: [CORE_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet],
+  templateUrl: "main-page.html"
 })
 class MainPage {
-    public featuredExamples = featuredExamples;
+  public featuredExamples = featuredExamples;
 }
 
 export function pageLoaded(args) {
-    var page = args.object;
-    page.bindingContext = "";
+  var page = args.object;
+  page.bindingContext = "";
 
-    console.log('BOOTSTRAPPING...');
-    nativeScriptBootstrap(MainPage, []).then((appRef) => {
-        console.log('ANGULAR BOOTSTRAP DONE.');
-    }, (err) => {
-        console.log('ERROR BOOTSTRAPPING ANGULAR');
-        let errorMessage = err.message + "\n\n" + err.stack;
-        console.log(errorMessage);
+  console.log('BOOTSTRAPPING...');
+  nativeScriptBootstrap(MainPage, []).then((appRef) => {
+    console.log('ANGULAR BOOTSTRAP DONE.');
+  }, (err) => {
+    console.log('ERROR BOOTSTRAPPING ANGULAR');
+    let errorMessage = err.message + "\n\n" + err.stack;
+    console.log(errorMessage);
 
-        let view = new TextView();
-        view.text = errorMessage;
-        topmost().currentPage.content = view;
-    });
+    let view = new TextView();
+    view.text = errorMessage;
+    topmost().currentPage.content = view;
+  });
 
 }

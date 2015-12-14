@@ -19,6 +19,7 @@
     "app/compat.d.ts",
     "app/components/list-settings-service.ts",
     "app/components/list-settings.ts",
+    "app/components/screen-size-service.ts",
     "app/examples-list/examples-list.ts",
     "app/main-page.ts",
     "app/model/examples-model.ts",

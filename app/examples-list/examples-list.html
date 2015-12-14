@@ -2,12 +2,10 @@
   <list-settings></list-settings>
 
   <ScrollView row="1">
-    <WrapLayout>
+    <WrapLayout [itemWidth]="isListLayout ? (screen.width - 1) : (screen.width/2 - 1)" padding="0 0 0 1">
       <StackLayout *ng-for="#example of filteredExamples" 
-        [width]="isListLayout ? 360 : 180"
         [orientation]="isListLayout ? 'horizontal' : 'vertical'"
-        tap="navigateToExample" class="example-item"
-       >
+        tap="navigateToExample" class="example-item">
         
         <GridLayout columns="*" rows="*"
           [class.example-img-wrap]="!isListLayout" 
