@@ -21,6 +21,7 @@
     "app/components/list-settings.ts",
     "app/components/screen-size-service.ts",
     "app/examples-list/examples-list.ts",
+    "app/groups-list/groups-list.ts",
     "app/main-page.ts",
     "app/model/examples-model.ts",
     "node_modules/tns-core-modules/tns-core-modules.d.ts"

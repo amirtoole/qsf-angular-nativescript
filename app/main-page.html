@@ -1,17 +1,18 @@
-<StackLayout>
-  <!--<TabView>
-    <TabView.items>
-      <TabViewItem title="FEATURED EXAMPLES">
-        <TabViewItem.view>-->
+<TabView>
+  <TabView.items>
+    <TabViewItem title="FEATURED EXAMPLES">
+      <TabViewItem.view>
+        <StackLayout>
           <examples-list [examples]="featuredExamples"></examples-list>
-        <!--</TabViewItem.view>
-      </TabViewItem>
-      <TabViewItem title="ALL CONTROLS">
-        <TabViewItem.view>
-          <Label text="ALL CONTROLS" />
-        </TabViewItem.view>
-      </TabViewItem>
-    </TabView.items>
-  </TabView>-->
-  
-</StackLayout>
+        </StackLayout>
+      </TabViewItem.view>
+    </TabViewItem>
+    <TabViewItem title="ALL CONTROLS">
+      <TabViewItem.view>
+        <StackLayout>
+          <groups-list></groups-list>
+        </StackLayout>
+      </TabViewItem.view>
+    </TabViewItem>
+  </TabView.items>
+</TabView>
