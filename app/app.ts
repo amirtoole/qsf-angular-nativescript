@@ -1,4 +1,4 @@
 import application = require("application");
-application.mainModule = "main-page";
+application.mainModule = "app-page";
 application.cssFile = "./app.css";
 application.start();

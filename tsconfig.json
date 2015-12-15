@@ -15,15 +15,21 @@
     "app/**/*.ts"
   ],
   "files": [
+    "app/app-page.ts",
     "app/app.ts",
     "app/compat.d.ts",
     "app/components/list-settings-service.ts",
     "app/components/list-settings.ts",
+    "app/components/ns-router-link.ts",
+    "app/components/open-link.ts",
     "app/components/screen-size-service.ts",
+    "app/example-preview/example-preview.ts",
     "app/examples-list/examples-list.ts",
+    "app/group/group.ts",
     "app/groups-list/groups-list.ts",
-    "app/main-page.ts",
+    "app/main-screen/main-screen.ts",
     "app/model/examples-model.ts",
+    "app/ns-location-strategy.ts",
     "node_modules/tns-core-modules/tns-core-modules.d.ts"
   ]
 }

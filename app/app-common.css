@@ -23,11 +23,15 @@
 }
 
 Page, ExamplePage {
-    background-color: #034D8D;
+    /*background-color: #034D8D;*/
+    background-color: #E5E5E8;
+    background-image: url("res://bg_main");
+    background-repeat: no-repeat;
+    background-position: 0 0;
 }
 
 TabView {
-    background-color: #034D8D;
+    /*background-color: #034D8D;*/
 }
 
 ActionBar {

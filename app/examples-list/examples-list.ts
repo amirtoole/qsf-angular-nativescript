@@ -4,11 +4,12 @@ import {ListSettingsService} from "../components/list-settings-service";
 import {ListSettingsComponent} from "../components/list-settings";
 import {ScreenSizeService} from "../components/screen-size-service";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {NSRouterLink} from "../components/ns-router-link";
 
 @Component({
     selector: 'examples-list',
     templateUrl: 'examples-list/examples-list.html',
-    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, ListSettingsComponent]
+    directives: [CORE_DIRECTIVES, ListSettingsComponent, NSRouterLink]
 })
 export class ExamplesListComponenet {
     @Input() examples: Array<Example>;
