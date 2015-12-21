@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import {TextView} from 'ui/text-view';
 import {topmost} from 'ui/frame';
 import {nativeScriptBootstrap} from 'nativescript-angular/application';
-import {Component, CORE_DIRECTIVES} from 'angular2/angular2';
+import {Component} from 'angular2/core';
 
 import {groups, featuredExamples, Example, ExampleGroup} from "../model/examples-model";
 import {ExamplesListComponenet} from "../examples-list/examples-list";
@@ -15,7 +15,7 @@ import {RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, LocationStrategy, Hash
 @Component({
   selector: 'main-screen',
   providers: [ListSettingsService, ScreenSizeService],
-  directives: [CORE_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet, GroupsListComponenet],
+  directives: [ListSettingsComponent, ExamplesListComponenet, GroupsListComponenet],
   templateUrl: "main-screen/main-screen.html"
 })
 export class MainScreenComponent {

@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import {TextView} from 'ui/text-view';
 import {topmost} from 'ui/frame';
 import {nativeScriptBootstrap} from 'nativescript-angular/application';
-import {Component, CORE_DIRECTIVES, bind} from 'angular2/angular2';
+import {Component, bind} from 'angular2/core';
 import {RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, LocationStrategy, Router, Location } from 'angular2/router';
 
 import {groups, featuredExamples, Example, ExampleGroup} from "./model/examples-model";
@@ -20,7 +20,7 @@ import {NSLocationStrategy} from "./ns-location-strategy";
 @Component({
     selector: 'main',
     providers: [ListSettingsService, ScreenSizeService],
-    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet, GroupsListComponenet, MainScreenComponent],
+    directives: [ROUTER_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet, GroupsListComponenet, MainScreenComponent],
     template: "<GridLayout><router-outlet></router-outlet></GridLayout>" //"<main-screen></main-screen>"
 })
 @RouteConfig([

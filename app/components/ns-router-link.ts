@@ -32,7 +32,7 @@ import {Router, Location, Instruction} from 'angular2/router';
  * current component's parent.
  */
 @Directive({
-  selector: '[ns-router-link]',
+  selector: '[nsRouterLink]',
   inputs: ['params: nsRouterLink'],
   host: {
     '(tap)': 'onTap()'

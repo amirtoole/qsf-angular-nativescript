@@ -4,7 +4,9 @@
         "**/*.js": {
             "when": "$(basename).ts"
         },
-        "**/*.js.map": {}
+        "**/*.js.map": {},
+        "platforms/**": {},
+        //"hooks/**": {}
     },
     "editor.tabSize": 4
 }

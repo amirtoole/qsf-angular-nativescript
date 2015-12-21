@@ -11,7 +11,7 @@ var isIOS: boolean = platform.device.os === platform.platformNames.ios;
 var isAndroid: boolean = platform.device.os === platform.platformNames.android;
 
 @Directive({
-  selector: '[open-link]',
+  selector: '[openLink]',
   inputs: ['url: openLink'],
   host: {
     '(tap)': 'onTap()'

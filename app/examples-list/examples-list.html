@@ -3,9 +3,9 @@
 
   <ScrollView row="1">
     <WrapLayout [itemWidth]="isListLayout ? (screen.width - 1) : (screen.width/2 - 1)" padding="0 0 0 1">
-      <StackLayout *ng-for="#example of filteredExamples" 
+      <StackLayout *ngFor="#example of filteredExamples" 
         [orientation]="isListLayout ? 'horizontal' : 'vertical'"
-        [ns-router-link]="['/Example', { id: example.id }]"
+        [nsRouterLink]="['/Example', { id: example.id }]"
         class="example-item">
         
         <GridLayout columns="*" rows="*"

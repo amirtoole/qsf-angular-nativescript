@@ -1,4 +1,4 @@
-import {Component, CORE_DIRECTIVES, Input} from 'angular2/angular2';
+import {Component, Input} from 'angular2/core';
 import {Example} from "../model/examples-model";
 import {ListSettingsService} from "../components/list-settings-service";
 import {ListSettingsComponent} from "../components/list-settings";
@@ -9,7 +9,7 @@ import {NSRouterLink} from "../components/ns-router-link";
 @Component({
     selector: 'examples-list',
     templateUrl: 'examples-list/examples-list.html',
-    directives: [CORE_DIRECTIVES, ListSettingsComponent, NSRouterLink]
+    directives: [ListSettingsComponent, NSRouterLink]
 })
 export class ExamplesListComponenet {
     @Input() examples: Array<Example>;

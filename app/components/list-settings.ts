@@ -1,10 +1,9 @@
-import { Component, CORE_DIRECTIVES, Input, Output } from 'angular2/angular2';
+import { Component, Input, Output } from 'angular2/core';
 import {ListSettingsService} from "./list-settings-service";
 
 @Component({
     selector: 'list-settings',
-    templateUrl: 'components/list-settings.html',
-    directives: [CORE_DIRECTIVES]
+    templateUrl: 'components/list-settings.html'
 })
 export class ListSettingsComponent {
     public settings: ListSettingsService;

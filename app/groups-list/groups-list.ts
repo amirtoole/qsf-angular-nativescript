@@ -1,4 +1,4 @@
-import {bootstrap, Component, CORE_DIRECTIVES} from 'angular2/angular2';
+import {Component} from 'angular2/core';
 import {groups, ExampleGroup} from "../model/examples-model";
 import {ListSettingsService} from "../components/list-settings-service";
 import {ListSettingsComponent} from "../components/list-settings";
@@ -10,7 +10,7 @@ import {Router} from 'angular2/router';
 @Component({
     selector: 'groups-list',
     templateUrl: 'groups-list/groups-list.html',
-    directives: [CORE_DIRECTIVES, ListSettingsComponent, NSRouterLink]
+    directives: [ListSettingsComponent, NSRouterLink]
 })
 export class GroupsListComponenet {
     private allGroups = groups;

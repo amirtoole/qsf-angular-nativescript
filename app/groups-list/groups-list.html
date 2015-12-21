@@ -2,8 +2,8 @@
     <list-settings></list-settings>
     <ScrollView row="1">
         <WrapLayout [itemWidth]="isListLayout ? (screen.width - 1) : (screen.width/2 - 1)" padding="0 0 0 1">
-            <GridLayout *ng-for="#group of groups"
-                [ns-router-link]="['/Group', { id: group.id }]"
+            <GridLayout *ngFor="#group of groups"
+                [nsRouterLink]="['/Group', { id: group.id }]"
                 orientation="horizontal"
                 cssClass="no-image-example-item"
                 columns="72, *" rows="42">
