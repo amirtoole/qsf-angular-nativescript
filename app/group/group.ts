@@ -13,9 +13,7 @@ import {ListSettingsService} from "../components/list-settings-service";
 export class GroupComponenet {
     public group: ExampleGroup;
     constructor(params: RouteParams) {
-        //var id = params.get("id");
-        var id = "coreui";
-
+        var id = params.get("id");
         console.log("GROUP id: " + id);
         for (var group of groups) {
             if (group.id === id) {

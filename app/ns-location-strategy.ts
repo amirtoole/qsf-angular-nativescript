@@ -1,5 +1,6 @@
 import application = require("application");
 import { LocationStrategy } from 'angular2/router';
+import { NgZone, ApplicationRef, Inject, forwardRef } from 'angular2/core';
 
 interface LocationState 
 { 
@@ -12,15 +13,19 @@ interface LocationState
 export class NSLocationStrategy extends LocationStrategy {
     private states = new Array<LocationState>();
     private popStateCallbacks = new Array<(_: any) => any>();
-    
-    constructor(){
+    private ngZone: NgZone;
+    constructor(@Inject(forwardRef(() => NgZone)) zone: NgZone){
         super();
+        
+        this.ngZone = zone;
         if(application.android){
             application.android.on("activityBackPressed", (args: application.AndroidActivityBackPressedEventData) => {
-                if(this.states.length > 1){
-                    this.back();
-                    args.cancel = true;
-                }
+                this.ngZone.run( () => {
+                    if(this.states.length > 1){
+                        this.back();
+                        args.cancel = true;
+                    }
+                });
             })
         }
     }

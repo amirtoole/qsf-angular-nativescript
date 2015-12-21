@@ -21,7 +21,7 @@ import {NSLocationStrategy} from "./ns-location-strategy";
     selector: 'main',
     providers: [ListSettingsService, ScreenSizeService],
     directives: [ROUTER_DIRECTIVES, ListSettingsComponent, ExamplesListComponenet, GroupsListComponenet, MainScreenComponent],
-    template: "<GridLayout><router-outlet></router-outlet></GridLayout>" //"<main-screen></main-screen>"
+    template: "<router-outlet></router-outlet>"
 })
 @RouteConfig([
     { path: '/', component: MainScreenComponent, as: 'Main' },
@@ -32,21 +32,26 @@ class MainPage {
     public featuredExamples = featuredExamples;
 }
 
+var initialized = false;
 export function pageLoaded(args) {
-    var page = args.object;
-    page.bindingContext = "";
+    if (!initialized) {
+        var page = args.object;
+        page.bindingContext = "";
 
-    console.log('BOOTSTRAPPING...');
-    nativeScriptBootstrap(MainPage, [ROUTER_PROVIDERS,
-        bind(LocationStrategy).toClass(NSLocationStrategy)]).then((appRef) => {
-            console.log('ANGULAR BOOTSTRAP DONE.');
-        }, (err) => {
-            console.log('ERROR BOOTSTRAPPING ANGULAR');
-            let errorMessage = err.message + "\n\n" + err.stack;
-            console.log(errorMessage);
+        console.log('BOOTSTRAPPING...');
+        nativeScriptBootstrap(MainPage, [ROUTER_PROVIDERS,
+            bind(LocationStrategy).toClass(NSLocationStrategy)]).then((appRef) => {
+                console.log('ANGULAR BOOTSTRAP DONE.');
+            }, (err) => {
+                console.log('ERROR BOOTSTRAPPING ANGULAR');
+                let errorMessage = err.message + "\n\n" + err.stack;
+                console.log(errorMessage);
 
-            let view = new TextView();
-            view.text = errorMessage;
-            topmost().currentPage.content = view;
-        });
+                let view = new TextView();
+                view.text = errorMessage;
+                topmost().currentPage.content = view;
+            });
+            
+        initialized = true;
+    }
 }

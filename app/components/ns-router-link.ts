@@ -56,7 +56,7 @@ export class NSRouterLink {
     }
 
     onTap(): void {
-        console.log("NSRouterLink onTap")
+        console.log("NSRouterLink onTap: " + JSON.stringify(this._navigationInstruction))
         this._router.navigateByInstruction(this._navigationInstruction);
     }
 }
