@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteParams } from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteParams, Router } from 'angular2/router';
 import {groups, ExampleGroup} from "../model/examples-model";
 import {ExamplesListComponenet} from "../examples-list/examples-list";
 import {ListSettingsService} from "../components/list-settings-service";
@@ -12,7 +12,8 @@ import {ListSettingsService} from "../components/list-settings-service";
 })
 export class GroupComponenet {
     public group: ExampleGroup;
-    constructor(params: RouteParams) {
+    constructor(params: RouteParams, private router: Router) {
+        console.log('ROUTER: ' + (<any>this.router.constructor).name);
         var id = params.get("id");
         console.log("GROUP id: " + id);
         for (var group of groups) {
@@ -21,5 +22,10 @@ export class GroupComponenet {
                 break;
             }
         }
+    }
+
+    public routerNavigate() {
+        console.log("Navigating to main...");
+        this.router.navigate(["Main"]);
     }
 }

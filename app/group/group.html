@@ -1,4 +1,5 @@
 <StackLayout rows="auto, *">
     <Label [text]="group.title" class="info-title" margin="12"></Label>
+    <Button text="Navigate away" (tap)="routerNavigate()"></Button>
     <examples-list [examples]="group.examples"></examples-list>
 </StackLayout>
