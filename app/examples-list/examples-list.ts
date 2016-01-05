@@ -14,6 +14,8 @@ import {NSRouterLink} from "../components/ns-router-link";
 export class ExamplesListComponenet {
     @Input() examples: Array<Example>;
 
+    private _filteredExamples: Array<Example> = [];
+    private _filterCache: Boolean = undefined;
 
     constructor(public settings: ListSettingsService, public screen: ScreenSizeService) {
         console.log("------------- ExamplesListComponenet constructor");
@@ -24,11 +26,17 @@ export class ExamplesListComponenet {
     }
 
     public get filteredExamples(): Array<Example> {
-        if (this.settings.showOnlyNew) {
-            return this.examples.filter((e) => e.isNew)
+        if (this._filterCache !== this.settings.showOnlyNew) {
+            this._filterCache = this.settings.showOnlyNew;
+            this._filteredExamples.length = 0;
+
+            if (this.settings.showOnlyNew) {
+                this._filteredExamples.push.apply(this.filteredExamples, this.examples.filter((e) => e.isNew));
+            }
+            else {
+                this._filteredExamples.push.apply(this.filteredExamples, this.examples);
+            }
         }
-        else {
-            return this.examples;
-        }
+        return this._filteredExamples;
     }
 }

@@ -16,6 +16,9 @@ export class GroupsListComponenet {
     private allGroups = groups;
     private settings: ListSettingsService;
 
+    private _filteredGroups: Array<ExampleGroup> = [];
+    private _filterCache: Boolean = undefined;
+
     constructor(settings: ListSettingsService, public screen: ScreenSizeService, private router: Router) {
         this.settings = settings;
     }
@@ -25,17 +28,18 @@ export class GroupsListComponenet {
     }
 
     public get groups(): Array<ExampleGroup> {
-        if (this.settings.showOnlyNew) {
-            return this.allGroups.filter((g) => g.isNew)
+        if (this._filterCache !== this.settings.showOnlyNew) {
+            this._filterCache = this.settings.showOnlyNew;
+            this._filteredGroups.length = 0;
+
+            if (this.settings.showOnlyNew) {
+                this._filteredGroups.push.apply(this._filteredGroups, this.allGroups.filter((e) => e.isNew));
+            }
+            else {
+                this._filteredGroups.push.apply(this._filteredGroups, this.allGroups);
+            }
         }
-        else {
-            return this.allGroups;
-        }
+
+        return this._filteredGroups;
     }
-
-    // public navigateToExampleGroup(group: ExampleGroup) {
-    //     console.log("------ navigateToExampleGroup group: " + group.id);
-
-    //     this.router.navigate(['/Group', { id: group.id }]);
-    // }
 }
