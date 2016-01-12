@@ -4,8 +4,8 @@ import {topmost} from 'ui/frame';
 import {Page} from 'ui/page';
 import {nativeScriptBootstrap} from './nativescript-angular/application';
 import {NativeScriptRenderer} from './nativescript-angular/renderer';
-import {Component, bind, DynamicComponentLoader, Type, ElementRef, AfterViewInit, ViewChild} from 'angular2/core';
-import {RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, LocationStrategy, Router, Location, AsyncRoute, RouteDefinition, CanReuse, OnActivate, OnDeactivate, ComponentInstruction } from 'angular2/router';
+import {Component, bind, DynamicComponentLoader, Type, ElementRef, AfterViewInit, ViewChild, ApplicationRef} from 'angular2/core';
+import {RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, LocationStrategy, Router, Location, AsyncRoute, RouteDefinition, CanReuse, OnActivate, OnDeactivate, ComponentInstruction} from 'angular2/router';
 
 import {groups, featuredExamples, Example, ExampleGroup} from "./model/examples-model";
 import {ExamplesListComponenet} from "./examples-list/examples-list";
@@ -71,13 +71,16 @@ export function pageComponentFactory(componentType: Type): Type {
         `
     })
     class PageShim implements CanReuse, OnActivate, OnDeactivate, AfterViewInit {
+        private active = false;
         private ownerPage: Page;
         @ViewChild('container') private container: ElementRef
 
         constructor(
+                private appRef: ApplicationRef,
                 private element: ElementRef,
                 private loader:DynamicComponentLoader,
-                private renderer: NativeScriptRenderer
+                private renderer: NativeScriptRenderer,
+                private locationStrategy: LocationStrategy
             ) {
             console.log('PageShim constructor');
         }
@@ -89,10 +92,18 @@ export function pageComponentFactory(componentType: Type): Type {
         ngAfterViewInit() {
             console.log('Container: ' + this.container);
             this.ownerPage = <Page>this.container.nativeElement.page;
+            this.ownerPage.on('navigatingTo', global.zone.bind(() => {
+                console.log('Got back to original page');
+                if (this.active) {
+                    console.log('Going back!');
+                    this.locationStrategy.back();
+                }
+            }));
         }
 
         routerOnActivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction): any {
             console.log('PageShim.OnActivate');
+            this.active = true;
 
             return new Promise((resolve, reject) => {
                 this.loader.loadIntoLocation(componentType, this.element, 'content').then((componentRef) => {
@@ -123,19 +134,25 @@ export function pageComponentFactory(componentType: Type): Type {
 
         routerOnDeactivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction): any {
             console.log('PageShim.OnDeactivate');
+            this.active = false;
 
             //Start navigation. We need to finish deactivation after navigation
             //finishes completely, or the old page will not be updated.
             //
-            //To do that, we use the original page 'loaded' event.
-            topmost().goBack();
-
+            //To do that, resolve the promise on the original page 'loaded' event.
             return new Promise((resolve, reject) => {
-                const loadedHandler = () => {
-                    this.ownerPage.off('loaded', loadedHandler);
+                if (!this.ownerPage.isLoaded) {
+                    const loadedHandler = global.zone.bind(() => {
+                        this.ownerPage.off('loaded', loadedHandler);
+                        //HACK: trigger a digest right after deactivation.
+                        //Otherwise the new component remains in a broken state.
+                        setTimeout(() => this.appRef.tick(), 0);
+                        resolve();
+                    });
+                    this.ownerPage.on('loaded', loadedHandler);
+                } else {
                     resolve();
                 }
-                this.ownerPage.on('loaded', loadedHandler);
             });
         }
     }
