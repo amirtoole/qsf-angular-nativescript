@@ -18,12 +18,12 @@ module.exports = function(grunt) {
 
     var androidAvd = grunt.option('avd') || "nexus"
     var genyDevice = grunt.option('geny') || "nexus7"
-    var iOSDevice = grunt.option('device') || "nexus"
+    var iOSDevice = grunt.option('device') || "iPhone-6"
 
     grunt.initConfig({
         ts: {
             build: {
-                tsconfig: 'app/tsconfig.json',
+                tsconfig: 'tsconfig.json',
                 options: {
                     fast: "never",
                     compiler: "node_modules/typescript/bin/tsc",
@@ -89,7 +89,12 @@ module.exports = function(grunt) {
                 command: "tns emulate android --avd '" + androidAvd +"'"
             },
             emulateIOS: {
-                command: "tns emulate ios --device '" + iOSDevice +"'"
+                command: "tns emulate ios --device '" + iOSDevice +"'",
+                options: {
+                    execOptions: {
+                        maxBuffer: 999999 * 1024
+                    }
+                }
             }
         }
     });
